@@ -1,0 +1,89 @@
+5-6:
+D:\>docker -v
+Docker version 20.10.23, build 7155243
+
+D:\>docker-compose -v
+Docker Compose version v2.15.1
+
+D:\>docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete
+Digest: sha256:ffb13da98453e0f04d33a6eee5bb8e46ee50d08ebe17735fc0779d0349e889e9
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+
+D:\>docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+D:\>docker images hello-world
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hello-world   latest    feb5d9fea6a5   18 months ago   13.3kB
+
+7-8:
+D:\>docker pull ellerbrock/alpine-bash-git
+Using default tag: latest
+latest: Pulling from ellerbrock/alpine-bash-git
+c87736221ed0: Pull complete
+eadf65686d00: Pull complete
+Digest: sha256:46262050f227c4515a501607873d760961ee32d92fa5b8cf9c89aca3c564d008
+Status: Downloaded newer image for ellerbrock/alpine-bash-git:latest
+docker.io/ellerbrock/alpine-bash-git:latest
+
+docker run -it -d --name lab_01 --entrypoint /bin/bash ellerbrock/alpine-bash-git
+defb7f5a61aa1b84e8698ff32c3e18b46fac13a22a6a38a73b6d0f969fb0220e
+
+D:\>docker exec -it lab_01 bash
+
+bash-4.4$ ls /
+bin    dev    etc    home   lib    media  mnt    proc   root   run    sbin   srv    sys    tmp    usr    var
+
+bash-4.4$ whoami
+download
+
+bash-4.4$ git --version
+git version 2.18.1
+
+9:
+bash-4.4$ git clone https://github.com/simonwhitaker/gibo
+Cloning into 'gibo'...
+remote: Enumerating objects: 526, done.
+remote: Counting objects: 100% (60/60), done.
+remote: Compressing objects: 100% (34/34), done.
+remote: Total 526 (delta 27), reused 47 (delta 24), pack-reused 466
+Receiving objects: 100% (526/526), 137.91 KiB | 2.09 MiB/s, done.
+Resolving deltas: 100% (254/254), done.
+
+bash-4.4$ ls
+gibo
+
+10:
+bash-4.4$ exit
+exit
+
+D:\>docker restart lab_01
+lab_01
+
+D:\>docker exec -it lab_01 bash
+bash-4.4$ ls
+gibo
