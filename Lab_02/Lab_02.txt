@@ -1,0 +1,108 @@
+1. Створіть у робочому репозиторії каталог Lab_02. 
+
+2. Напишіть додаток, який буде запускатися з терміналу та виводити "Hello, World!" у консоль. 
+
+3. Створіть файл з назвою "Dockerfile". 
+
+4. Відкрийте термінал та перейдіть до кореневої директорії проекту. Введіть наступну команду для збірки контейнера:
+PS D:\TKS\Lab_02> docker build -t myapp .
+[+] Building 63.5s (8/8) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                    0.0s
+ => => transferring dockerfile: 124B                                                                                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                       0.0s
+ => => transferring context: 2B                                                                                                                                                                                                         0.0s
+ => [internal] load metadata for docker.io/library/python:3                                                                                                                                                                             2.4s
+ => [internal] load build context                                                                                                                                                                                                       0.1s
+ => => transferring context: 55B                                                                                                                                                                                                        0.0s
+ => [1/3] FROM docker.io/library/python:3@sha256:5329e75033c4446dc92d702cf8ebbeb63e549d9b83076a776f6753e10817fc3c                                                                                                                      40.5s
+ => => resolve docker.io/library/python:3@sha256:5329e75033c4446dc92d702cf8ebbeb63e549d9b83076a776f6753e10817fc3c                                                                                                                       0.0s
+ => => sha256:3e440a7045683e27f8e2fa04000e0e078d8dfac0c971358ae0f8c65c13321c8e 55.05MB / 55.05MB                                                                                                                                       14.1s
+ => => sha256:670730c27c2eacf07897a6e94fe55423ea50b884d9c28161a283bbbf064d1124 10.88MB / 10.88MB                                                                                                                                        3.6s
+ => => sha256:5329e75033c4446dc92d702cf8ebbeb63e549d9b83076a776f6753e10817fc3c 2.14kB / 2.14kB                                                                                                                                          0.0s
+ => => sha256:aa25de88a84b4c966ce581bda763553da7a093a06315adec8830c3d39b832196 2.22kB / 2.22kB                                                                                                                                          0.0s
+ => => sha256:df3e9d105d6c5f8aa4410ba84b570db5f9fefbf14020b70fb63c8e7c32e51fb0 7.90kB / 7.90kB                                                                                                                                          0.0s
+ => => sha256:68a71c865a2c34678c6dea55e4b0928f751ee3c0ca91cace6e4e0578c534d6cf 5.17MB / 5.17MB                                                                                                                                          1.6s
+ => => sha256:5a7a2c95f0f8b221d776ccf35911b68eec2cf9414a44d216205a6f03e381d3d7 54.58MB / 54.58MB                                                                                                                                       16.2s
+ => => sha256:6d627e120214bb28a729d4b54a0ecba4c4aeaf0295ca2d1f129480145fad2af6 196.81MB / 196.81MB                                                                                                                                     32.4s
+ => => extracting sha256:3e440a7045683e27f8e2fa04000e0e078d8dfac0c971358ae0f8c65c13321c8e                                                                                                                                               1.7s
+ => => sha256:f8c6dc6780819f5eb5a6ee84ce72dd613d5e6c406585211a064b6ef641c8a09a 6.29MB / 6.29MB                                                                                                                                         16.3s
+ => => extracting sha256:68a71c865a2c34678c6dea55e4b0928f751ee3c0ca91cace6e4e0578c534d6cf                                                                                                                                               0.2s
+ => => sha256:48bd2de548fc487bbcf51e8ae99969d4ac77e412c4fcec68bc529bca2ad304b3 20.05MB / 20.05MB                                                                                                                                       20.1s
+ => => sha256:e69bcee2d3143195eac279932a0692697b7e3905bed8c737f1cc7f237899ea05 244B / 244B                                                                                                                                             16.6s
+ => => extracting sha256:670730c27c2eacf07897a6e94fe55423ea50b884d9c28161a283bbbf064d1124                                                                                                                                               0.2s
+ => => sha256:284a2f2376093ba00b09f539e56047dc168703a78095640a178b8e0c5450f460 3.08MB / 3.08MB                                                                                                                                         17.8s
+ => => extracting sha256:5a7a2c95f0f8b221d776ccf35911b68eec2cf9414a44d216205a6f03e381d3d7                                                                                                                                               1.7s
+ => => extracting sha256:6d627e120214bb28a729d4b54a0ecba4c4aeaf0295ca2d1f129480145fad2af6                                                                                                                                               5.1s
+ => => extracting sha256:f8c6dc6780819f5eb5a6ee84ce72dd613d5e6c406585211a064b6ef641c8a09a                                                                                                                                               0.2s
+ => => extracting sha256:48bd2de548fc487bbcf51e8ae99969d4ac77e412c4fcec68bc529bca2ad304b3                                                                                                                                               0.6s
+ => => extracting sha256:e69bcee2d3143195eac279932a0692697b7e3905bed8c737f1cc7f237899ea05                                                                                                                                               0.0s
+ => => extracting sha256:284a2f2376093ba00b09f539e56047dc168703a78095640a178b8e0c5450f460                                                                                                                                               0.2s
+ => [2/3] COPY app.py /                                                                                                                                                                                                                13.0s
+ => [3/3] RUN pip install flask                                                                                                                                                                                                         6.3s
+ => exporting to image                                                                                                                                                                                                                  1.1s
+ => => exporting layers                                                                                                                                                                                                                 0.8s
+ => => writing image sha256:9f9a9352f183f199e20782eb937e05990677b9e5ff463b0bd6fa7f98af4874c9                                                                                                                                            0.0s
+ => => naming to docker.io/library/myapp
+
+5: Запустіть Docker контейнер, використовуючи наступну команду:
+PS D:\TKS\Lab_02> docker run myapp
+Hello, World!
+
+6: Зупиніть та видаліть створений контейнер.
+PS D:\TKS\Lab_02> docker stop $(docker ps -a -q)
+4c4031fab2b7
+PS D:\TKS\Lab_02> docker rm $(docker ps -a -q)
+4c4031fab2b7
+
+7. На вибраній мові програмування напишіть програму, яка зчитує текст цієї лабораторної роботи із файлу і виводить його у термінал.
+
+8. Створіть Dockerfile для запуску цієї програми у контейнері.
+
+9. Зберіть та запустіть створений контейнер.
+PS D:\TKS\Lab_02> docker build -t myapp -f Dockerfile2 .
+[+] Building 10.8s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile2                                                                                                                                                                                   0.0s
+ => => transferring dockerfile: 185B                                                                                                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                       0.0s
+ => => transferring context: 2B                                                                                                                                                                                                         0.0s
+ => [internal] load metadata for docker.io/library/python:3                                                                                                                                                                             0.7s
+ => CACHED [1/5] FROM docker.io/library/python:3@sha256:5329e75033c4446dc92d702cf8ebbeb63e549d9b83076a776f6753e10817fc3c                                                                                                                0.0s
+ => [internal] load build context                                                                                                                                                                                                       0.0s
+ => => transferring context: 22.31kB                                                                                                                                                                                                    0.0s
+ => [2/5] COPY app2.py /                                                                                                                                                                                                                0.1s
+ => [3/5] COPY Lab2_DockerBasics.docx /                                                                                                                                                                                                 0.1s
+ => [4/5] RUN pip install flask                                                                                                                                                                                                         4.1s
+ => [5/5] RUN pip install python-docx                                                                                                                                                                                                   5.3s
+ => exporting to image                                                                                                                                                                                                                  0.3s
+ => => exporting layers                                                                                                                                                                                                                 0.3s
+ => => writing image sha256:3915fe5dfc9aa46899b996ae7c5502ddc535a115539aed65a16b68a6c9f7dc08                                                                                                                                            0.0s
+ => => naming to docker.io/library/myapp                                                                                                                                                                                                0.0s
+PS D:\TKS\Lab_02> docker run myapp
+Лабораторна робота №2. Створення Docker контейнера для запуску додатку.
+
+Мета: ознайомитися з Docker та створенням власних Docker контейнерів, написати Dockerfile для збирання контейнера з додатком, запустити додаток у Docker контейнері.
+
+Завдання
+
+Створіть у робочому репозиторії каталог Lab_02. Усі наступні завдання необхідно виконувати у цьому каталозі.
+Напишіть додаток, який буде запускатися з терміналу та виводити "Hello, World!" у консоль. Збережіть код у файлі з назвою "app.py".
+Створіть файл з назвою "Dockerfile". Додайте у файл наступний вміст:
+
+Цей Dockerfile означає, що ми будемо використовувати базовий образ Python версії 3, копіювати файл "app.py" в кореневу директорію контейнера, встановлювати бібліотеку Flask та запускати додаток командою "python ./app.py".
+Відкрийте термінал та перейдіть до кореневої директорії проекту. Введіть наступну команду для збірки контейнера:
+
+$> docker build -t myapp .
+
+Запустіть Docker контейнер, використовуючи наступну команду:
+
+$> docker run myapp
+
+Зупиніть та видаліть створений контейнер.
+На вибраній мові програмування напишіть програму, яка зчитує текст цієї лабораторної роботи із файлу і виводить його у термінал.
+Створіть Dockerfile для запуску цієї програми у контейнері.
+Зберіть та запустіть створений контейнер.
+ Закомітьте усі створені файли та відправте зміни на GitHub.
+
+
+
+
