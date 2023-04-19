@@ -1,0 +1,59 @@
+1.	Створіть у репозиторії каталог Lab_03. Усі подальші завдання виконуються у ньому.
+2.	Запустіть веб-сервер у Docker контейнері та зробіть його доступним на локальному порту:
+a.	Додайте каталог web_server. У ньому створіть файл index.html із довільним контентом.
+b.	Створіть Dockerfile з базовим образом Ubuntu та необхідними залежностями.
+FROM ubuntu:latest
+RUN apt-get update -y && apt-get install -y apache2
+COPY web_server/ /var/www/html/
+EXPOSE 80
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+c.	Запустіть контейнер зі змонтованою папкою "web_server" та прокинутим портом 8080.
+
+
+PS D:\TKS\Lab_03> docker build -t web_server .
+[+] Building 1.7s (8/8) FINISHED
+ => [internal] load build definition from Dockerfile                          0.0s
+ => => transferring dockerfile: 32B                                           0.0s
+ => [internal] load .dockerignore                                             0.0s
+ => => transferring context: 2B                                               0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest              1.3s
+ => [internal] load build context                                             0.0s
+ => => transferring context: 948B                                             0.0s
+ => [1/3] FROM docker.io/library/ubuntu:latest@sha256:67211c14fa74f070d27cc5  0.1s
+ => => resolve docker.io/library/ubuntu:latest@sha256:67211c14fa74f070d27cc5  0.1s
+ => CACHED [2/3] RUN apt-get update -y && apt-get install -y apache2          0.0s
+ => [3/3] COPY web_server/ /var/www/html/                                     0.1s
+ => exporting to image                                                        0.1s
+ => => exporting layers                                                       0.1s
+ => => writing image sha256:0db03eeca05d5bca4af8ffb263050726c35d53d5c48f7823  0.0s
+ => => naming to docker.io/library/web_server                                 0.0s
+PS D:\TKS\Lab_03> docker run -p 8080:80 web_server
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+
+
+d.	Перевірте доступність веб-сервера за адресою http://localhost:8080
+e.	Додайте у каталог web_server скріншот запущеного серверу, який доступний із локальної машини.
+
+3.	Запустити базу даних MySQL та PHPMyAdmin у Docker контейнерах та зробити їх доступними на локальному порту.
+
+a.	Створіть каталог mysql та у ньому каталог data.
+b.	Завантажте образ MySQL з Docker Hub
+c.	Запустіть контейнер зі змонтованим сховищем у каталог із даними та прокинутим портом 3306
+
+PS D:\TKS\Lab_03> docker run -d -p 3306:3306 --name mysql -v ./data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test_db mysql:latest
+9b82c7ad13e16f5e47dfad95a004929c3ce963a891d23ba1bc99679ef5024a58
+
+d.	Завантажте образ PHPMyAdmin з Docker Hub.
+e.	Запустіть контейнер PHPMyAdmin із прокинутим портом 8080.
+
+PS D:\TKS\Lab_03> docker run -d --name myadmin --link mysql:db -e PMA_HOST=db -e PMA_USER=root -e PMA_PASSWORD=root -p 8080:80 phpmyadmin/phpmyadmin:latest                                                                                  
+04852a7816404170fd2730c2dbf1413977ed322b35eff9189636f8ce1d6aca81
+
+f.	Перейдіть за адресою http://localhost:8080 у веб-браузері та введіть логін та пароль для доступу до бази даних.
+g.	Додайте у каталог скріншот запущеного PHPMyAdmin із відкритим списком таблиць бази даних MySQL.
+
+Зверніть увагу на параметр "PMA_HOST", який повинен бути встановленим на IP-адрес або ім'я хосту бази даних, який використовується в контейнері MySQL. 
+
+4.	Збережіть зміни та відправте у віддалений репозиторій.
+
+

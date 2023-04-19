@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Випадкова сторінка</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<h1>Ласкаво просимо на сторінку з випадковим контентом!</h1>
+	<p>Ось рандомний текст: <span id="random-text"></span></p>
+	<p>Рандомне число від 1 до 100: <span id="random-number"></span></p>
+	
+	<script>
+		var textArray = ["привіт", "як справи?", "що нового?", "як говориться"];
+		var randomIndex = Math.floor(Math.random() * textArray.length);
+		var randomText = textArray[randomIndex];
+		document.getElementById("random-text").innerHTML = randomText;
+		
+		var randomNumber = Math.floor(Math.random() * 100) + 1;
+		document.getElementById("random-number").innerHTML = randomNumber;
+	</script>
+</body>
+</html>
