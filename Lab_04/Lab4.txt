@@ -1,0 +1,75 @@
+1.Встановіть інструмент docker-compose на локальну машину.
+PS D:\TKS\Lab_04\mysql> docker-compose --version
+Docker Compose version v2.15.1
+
+3.Виконайте завдання 3 “Запустити базу даних MySQL та PHPMyAdmin у Docker контейнерах” Лабораторної роботи №3 використовуючи Docker Compose. Додайте до каталогу “mysql” відповідний конфігураційний файл та скріншот запущеного PHPMyAdmin.
+PS D:\TKS\Lab_04\mysql> docker-compose up -d
+[+] Running 19/19
+ - phpmyadmin Pulled                                                                                                                                                                                                                    9.8s
+   - 9e3ea8720c6d Already exists                                                                                                                                                                                                        0.0s
+   - 07353b772b5e Already exists                                                                                                                                                                                                        0.0s
+   - 5908153120ba Already exists                                                                                                                                                                                                        0.0s
+   - 8681ad2eeea6 Already exists                                                                                                                                                                                                        0.0s
+   - 92711ce78973 Pull complete                                                                                                                                                                                                         4.1s
+   - bf1c5be6427e Pull complete                                                                                                                                                                                                         4.2s
+   - 1d02a81768ed Pull complete                                                                                                                                                                                                         4.3s
+   - 45b6c3f0b8f9 Pull complete                                                                                                                                                                                                         4.5s
+   - d2a7e0b762ed Pull complete                                                                                                                                                                                                         4.6s
+   - 1af1541df5b9 Pull complete                                                                                                                                                                                                         5.2s
+   - 94b51397ca90 Pull complete                                                                                                                                                                                                         5.3s
+   - 820f26f259d9 Pull complete                                                                                                                                                                                                         5.4s
+   - 3cc3365e9023 Pull complete                                                                                                                                                                                                         5.5s
+   - fcab502a7846 Pull complete                                                                                                                                                                                                         5.7s
+   - f65b8e013adf Pull complete                                                                                                                                                                                                         5.8s
+   - ac0ee1adffcd Pull complete                                                                                                                                                                                                         7.2s
+   - 77c15d5f9b2c Pull complete                                                                                                                                                                                                         7.3s
+   - e48a3fa01f54 Pull complete                                                                                                                                                                                                         7.3s
+[+] Running 3/3
+ - Network mysql_default         Created                                                                                                                                                                                                0.1s
+ - Container mysql-phpmyadmin-1  Started                                                                                                                                                                                               19.7s
+ - Container mysql-db-1          Started
+
+4.
+d.Контейнеризуйте створені сервіси із використанням Dockerfile. Кожен сервіс повинен існувати у окремому середовищі із усіма необхідними залежностями. Передбачте спільний доступ до вибраного каталогу для обох сервісів.
+
+D:\TKS\Lab_04\time_checker>docker build -t service1 -f dockerfile1 .
+[+] Building 1.9s (7/7) FINISHED
+ => [internal] load build definition from dockerfile1                                                                                                    0.1s
+ => => transferring dockerfile: 110B                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                        0.1s
+ => => transferring context: 2B                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/library/python:3                                                                                              1.5s
+ => [internal] load build context                                                                                                                        0.1s
+ => => transferring context: 511B                                                                                                                        0.1s
+ => [1/2] FROM docker.io/library/python:3@sha256:b9683fa80e22970150741c974f45bf1d25856bd76443ea561df4e6fc00c2bc17                                        0.0s
+ => CACHED [2/2] COPY Service1.py /                                                                                                                      0.0s
+ => exporting to image                                                                                                                                   0.1s
+ => => exporting layers                                                                                                                                  0.0s
+ => => writing image sha256:1e42c2d22046c83ad325a60668c2a1a56368f263ab28a05961be9b35504d1751                                                             0.0s
+ => => naming to docker.io/library/service1                                                                                                              0.0s
+
+D:\TKS\Lab_04\time_checker>docker build -t service2 -f dockerfile2 .
+[+] Building 1.0s (7/7) FINISHED
+ => [internal] load build definition from dockerfile2                                                                                                    0.0s
+ => => transferring dockerfile: 110B                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                        0.1s
+ => => transferring context: 2B                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/library/python:3                                                                                              0.7s
+ => [internal] load build context                                                                                                                        0.0s
+ => => transferring context: 623B                                                                                                                        0.0s
+ => [1/2] FROM docker.io/library/python:3@sha256:b9683fa80e22970150741c974f45bf1d25856bd76443ea561df4e6fc00c2bc17                                        0.0s
+ => CACHED [2/2] COPY Service2.py /                                                                                                                      0.0s
+ => exporting to image                                                                                                                                   0.0s
+ => => exporting layers                                                                                                                                  0.0s
+ => => writing image sha256:512f57066103f39400a56695d6bf48da1b52151054328e44883bc8a6646f2a24                                                             0.0s
+ => => naming to docker.io/library/service2
+
+e.Налаштуйте спільний запуск сервісів з використанням інструменту docker-compose.
+
+PS D:\TKS\Lab_04\time_checker> docker-compose up
+[+] Running 3/3
+ - Network time_checker_default       Created                                                                                                                                                                                           0.1s
+ - Container time_checker-service2-1  Created                                                                                                                                                                                           0.3s
+ - Container time_checker-service1-1  Created                                                                                                                                                                                           0.4s
+Attaching to time_checker-service1-1, time_checker-service2-1
+

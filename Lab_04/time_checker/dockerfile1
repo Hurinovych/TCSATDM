@@ -1,0 +1,5 @@
+FROM python:3
+
+COPY Service1.py /
+
+CMD [ "python", "./Service1.py" ]

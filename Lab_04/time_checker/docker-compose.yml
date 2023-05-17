@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  service1:
+    image: service1
+    volumes:
+      - ./times:/times
+
+  service2:
+    image: service2
+    volumes:
+      - ./times:/times
