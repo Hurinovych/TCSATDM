@@ -1,0 +1,7 @@
+FROM python:3
+
+COPY Consumer.py ./
+
+RUN pip install kafka-python==2.0.2
+
+CMD ["python", "Consumer.py"]
